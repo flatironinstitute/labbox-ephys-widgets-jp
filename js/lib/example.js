@@ -24,9 +24,9 @@ export const HelloModel = DOMWidgetModel.extend({
         _view_name: 'HelloView',
         _model_module: 'hello',
         _view_module: 'labbox-ephys-widgets-jp',
-        _model_module_version: '0.1.2',
-        _view_module_version: '0.1.2',
-        value: 'Hello World (from typescript) - 0.1.2!'
+        _model_module_version: '0.1.3',
+        _view_module_version: '0.1.3',
+        value: 'Hello World (from typescript) - 0.1.3!'
     })
 });
 // Custom View. Renders the widget model.
