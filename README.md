@@ -13,6 +13,8 @@ You must use JupyterLab 3. If not already installed:
 pip install jupyterlab==3
 ```
 
+Install labbox-ephys and start a kachery-p2p daemon according to [these instructions](https://github.com/flatironinstitute/labbox-ephys/blob/main/doc/labbox_ephys_web_server.md). Note that you don't need to actually run the labbox-ephys web server.
+
 ---
 ## Installation
 
@@ -22,6 +24,11 @@ Install labbox-ephys-widgets-jp and enable the labbox jupyter server extension:
 pip install --upgrade labbox-ephys-widgets-jp
 jupyter serverextension enable labbox --sys-prefix
 ```
+
+---
+## Usage
+
+Try out an example notebook in the [examples](./examples) folder.
 
 ---
 ## Development installation
