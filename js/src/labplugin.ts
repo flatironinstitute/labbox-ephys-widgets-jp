@@ -4,7 +4,7 @@ import { HelloModel, HelloView, WorkspaceViewJp, WorkspaceViewJpModel } from './
 const activate = (app: any, widgets: any) => {
   widgets.registerWidget({
     name: 'labbox-ephys-widgets-jp',
-    version: '0.1.2',
+    version: '0.1.3',
     exports: {HelloModel, HelloView, WorkspaceViewJpModel, WorkspaceViewJp}
   });
 }

@@ -7,7 +7,7 @@ from traitlets import Float as FloatTrait
 from traitlets import Unicode
 
 module_name = 'labbox-ephys-widgets-jp'
-module_version = '0.1.2'
+module_version = '0.1.3'
 
 labbox_config = {
         'job_handlers': {
