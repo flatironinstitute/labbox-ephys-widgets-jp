@@ -1,0 +1,13 @@
+import { LabboxExtensionContext } from './extensions/pluginInterface';
+
+{% for extension in extensions -%}
+import { activate as activate_{{ extension.name }} } from './extensions/{{ extension.relPath }}'
+{% endfor -%}
+
+const registerExtensions = (context: LabboxExtensionContext) => {
+    {% for extension in extensions -%}
+    activate_{{ extension.name }}(context)
+    {% endfor -%}
+}
+
+export default registerExtensions

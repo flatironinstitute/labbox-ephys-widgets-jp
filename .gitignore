@@ -1,0 +1,19 @@
+js/lib
+*.egg-info/
+.ipynb_checkpoints/
+dist/
+build/
+*.py[cod]
+node_modules/
+__pycache__
+Untitled*.ipynb
+package-lock.json
+yarn.lock
+lib-save
+
+# Compiled javascript
+labbox_ephys_widgets_jp/nbextension/
+labbox_ephys_widgets_jp/labextension/
+
+# OS X
+.DS_Store
