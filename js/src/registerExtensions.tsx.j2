@@ -1,11 +1,9 @@
-import { LabboxExtensionContext } from './extensions/pluginInterface';
 
-{% for extension in extensions -%}
-import { activate as activate_{{ extension.name }} } from './extensions/{{ extension.relPath }}'
-{% endfor -%}
+import { {{ classPrefix }}ExtensionContext } from './extensions/pluginInterface'
 
-const registerExtensions = (context: LabboxExtensionContext) => {
+const registerExtensions = async (context: {{ classPrefix }}ExtensionContext) => {
     {% for extension in extensions -%}
+    const {activate: activate_{{ extension.name }}} = await import('./extensions/{{ extension.relPath }}')
     activate_{{ extension.name }}(context)
     {% endfor -%}
 }

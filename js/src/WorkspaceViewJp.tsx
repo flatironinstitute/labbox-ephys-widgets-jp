@@ -1,11 +1,8 @@
 import { DOMWidgetModel, DOMWidgetView, ISerializers } from '@jupyter-widgets/base';
-import { MuiThemeProvider } from '@material-ui/core';
-import { LabboxProvider } from 'labbox';
-import React from 'react';
+import { createExtensionContext, LabboxProvider } from 'labbox';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
-import extensionContext from './extensionContext';
-import theme from './extensions/theme';
-import WorkspaceViewWrapper from './WorkspaceViewWrapper';
+import registerExtensions from './registerExtensions';
 
 export class WorkspaceViewJp extends DOMWidgetView {
     // _hitherJobManager: HitherJobManager
@@ -13,8 +10,13 @@ export class WorkspaceViewJp extends DOMWidgetView {
     initialize() {
         // this._hitherJobManager = new HitherJobManager(this.model)
     }
-    element() {
+    async element() {
         const workspaceUri: string = this.model.get('workspaceUri')
+
+        const WorkspaceViewWrapper = React.lazy(() => import('./WorkspaceViewWrapper'))
+
+        const extensionContext = createExtensionContext()
+        await registerExtensions(extensionContext)
 
         const apiConfig = {
             webSocketUrl: '',
@@ -25,24 +27,23 @@ export class WorkspaceViewJp extends DOMWidgetView {
         }
 
         return (
-            <MuiThemeProvider theme={theme}>
+            <Suspense fallback={<div>Importing workspace view</div>}>
                 <LabboxProvider extensionContext={extensionContext} apiConfig={apiConfig} status={this._status}>
                     <WorkspaceViewWrapper
                         workspaceUri={workspaceUri}
-                        model={this.model}
                     />
                 </LabboxProvider>
-            </MuiThemeProvider>
+            </Suspense>
         )
     }
     render() {
-        const reactElement = this.element()
+        this.element().then((reactElement) => {
+            const widgetHeight = 700
 
-        const widgetHeight = 700
+            this.el.classList.add('WorkspaceViewJp')
 
-        this.el.classList.add('WorkspaceViewJp')
-
-        renderJpWidget(this, reactElement, widgetHeight)
+            renderJpWidget(this, reactElement, widgetHeight)
+        })
     }
     remove() {
         this._status.active = false

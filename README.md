@@ -5,7 +5,7 @@ Jupyter widgets for [labbox-ephys](https://github.com/flatironinstitute/labbox-e
 ---
 ## Prerequisites
 
-It is highly recommended that you use a conda environment with Python >=3.8
+It is recommended that you use a conda environment with Python >=3.8
 
 You must use JupyterLab 3. If not already installed:
 
@@ -13,20 +13,14 @@ You must use JupyterLab 3. If not already installed:
 pip install jupyterlab==3
 ```
 
-Install labbox and enable the labbox jupyter server extension:
-
-```bash
-pip install --upgrade labbox
-jupyter serverextension enable labbox --sys-prefix
-```
-
 ---
 ## Installation
 
-Install labbox-ephys-widgets-jp:
+Install labbox-ephys-widgets-jp and enable the labbox jupyter server extension:
 
 ```bash
 pip install --upgrade labbox-ephys-widgets-jp
+jupyter serverextension enable labbox --sys-prefix
 ```
 
 ---
