@@ -13,7 +13,7 @@ You must use JupyterLab 3. If not already installed:
 pip install jupyterlab==3
 ```
 
-Install labbox-ephys and start a kachery-p2p daemon according to [these instructions](https://github.com/flatironinstitute/labbox-ephys/blob/main/doc/labbox_ephys_web_server.md). Note that you don't need to actually run the labbox-ephys web server.
+Install labbox-ephys and start a kachery-p2p daemon according to [these instructions](https://github.com/flatironinstitute/labbox-ephys/blob/main/doc/start-web-server.md). Note that you don't need to actually run the labbox-ephys web server.
 
 ---
 ## Installation
