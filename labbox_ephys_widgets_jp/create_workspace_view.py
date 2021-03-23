@@ -7,7 +7,7 @@ from traitlets import Float as FloatTrait
 from traitlets import Unicode
 
 module_name = 'labbox-ephys-widgets-jp'
-module_version = '0.1.3'
+module_version = '0.1.4'
 
 labbox_config = {
         'job_handlers': {
@@ -49,7 +49,7 @@ def create_workspace_view(
         def __init__(self) -> None:
             super().__init__()
             self.on_msg(self._handle_message)
-            self._worker_session = lb.WorkerSession(labbox_config=labbox_config)
+            self._worker_session = lb.WorkerSession(labbox_config=labbox_config, default_feed_name='labbox-ephys-default')
             def on_msgs(msgs):
                 self.send(msgs)
             self._worker_session.on_messages(on_msgs)

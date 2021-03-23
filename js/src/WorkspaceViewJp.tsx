@@ -82,8 +82,8 @@ export class WorkspaceViewJpModel extends DOMWidgetModel {
 
     static model_name = 'WorkspaceViewJpModel';
     static model_module = 'labbox-ephys-widgets-jp';
-    static model_module_version = '0.1.3';
+    static model_module_version = '0.1.4';
     static view_name = 'WorkspaceViewJp'; // Set to null if no view
     static view_module = 'labbox-ephys-widgets-jp'; // Set to null if no view
-    static view_module_version = '0.1.3';
+    static view_module_version = '0.1.4';
 }

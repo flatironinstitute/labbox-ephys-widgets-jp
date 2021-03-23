@@ -12,6 +12,15 @@
                 "clear": true
             },
             "detail": "Publish package to PyPI"
+        },
+        {
+            "label": "Code generation",
+            "type": "shell",
+            "command": "bash -ic .vscode/tasks/code_generation.py",
+            "presentation": {
+                "clear": true
+            },
+            "detail": "Run code generation"
         }
     ]
 }
