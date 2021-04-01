@@ -3,6 +3,7 @@ import { createExtensionContext, LabboxProvider } from 'labbox';
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import registerExtensions from './registerExtensions';
+import version from './version'
 
 export class WorkspaceViewJp extends DOMWidgetView {
     // _hitherJobManager: HitherJobManager
@@ -82,8 +83,8 @@ export class WorkspaceViewJpModel extends DOMWidgetModel {
 
     static model_name = 'WorkspaceViewJpModel';
     static model_module = 'labbox-ephys-widgets-jp';
-    static model_module_version = '0.1.4';
+    static model_module_version = version;
     static view_name = 'WorkspaceViewJp'; // Set to null if no view
     static view_module = 'labbox-ephys-widgets-jp'; // Set to null if no view
-    static view_module_version = '0.1.4';
+    static view_module_version = version;
 }

@@ -19,12 +19,6 @@ log.set_verbosity(log.DEBUG)
 log.info('setup.py entered')
 log.info('$PATH=%s' % os.environ['PATH'])
 
-name = 'labbox_ephys_widgets_jp'
-LONG_DESCRIPTION = 'Labbox-ephys jupyter widgets'
-
-# Get labbox_ephys_widgets_jp version
-version = get_version(pjoin(name, '_version.py'))
-
 js_dir = pjoin(here, 'js')
 
 # Representative files that should exist after a successful build
@@ -45,21 +39,14 @@ cmdclass['jsdeps'] = combine_commands(
 )
 
 setup_args = dict(
-    name=name,
-    version=version,
-    description='Labbox-ephys jupyter widgets',
-    long_description=LONG_DESCRIPTION,
     include_package_data=True,
     install_requires=[
         'ipywidgets>=7.6.0',
-        'labbox-ephys>=0.5.8'
+        'labbox-ephys>=0.5.9'
     ],
     packages=find_packages(),
     zip_safe=False,
     cmdclass=cmdclass,
-    author='Jeremy Magland',
-    author_email='jmagland@flatironinstitute.org',
-    url='https://github.com/flatironinstitute/labbox-ephys-widgets-jp',
     keywords=[
         'ipython',
         'jupyter',

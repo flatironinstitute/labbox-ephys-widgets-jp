@@ -1,9 +1,10 @@
 import { IJupyterWidgetRegistry } from '@jupyter-widgets/base';
 import { HelloModel, HelloView, WorkspaceViewJp, WorkspaceViewJpModel } from './index';
+import version from './version';
 const activate = (app, widgets) => {
     widgets.registerWidget({
         name: 'labbox-ephys-widgets-jp',
-        version: '0.1.3',
+        version: version,
         exports: { HelloModel, HelloView, WorkspaceViewJpModel, WorkspaceViewJp }
     });
 };

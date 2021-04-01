@@ -1,5 +1,6 @@
 import { DOMWidgetModel, DOMWidgetView } from '@jupyter-widgets/base';
 import _ from 'lodash';
+import version from './version';
 // See example.py for the kernel counterpart to this file.
 // const extensionContext = createExtensionContext<LabboxPlugin>()
 // registerExtensions(extensionContext)
@@ -24,9 +25,9 @@ export const HelloModel = DOMWidgetModel.extend({
         _view_name: 'HelloView',
         _model_module: 'hello',
         _view_module: 'labbox-ephys-widgets-jp',
-        _model_module_version: '0.1.3',
-        _view_module_version: '0.1.3',
-        value: 'Hello World (from typescript) - 0.1.3!'
+        _model_module_version: version,
+        _view_module_version: version,
+        value: `Hello World (from typescript) - ${version}!`
     })
 });
 // Custom View. Renders the widget model.

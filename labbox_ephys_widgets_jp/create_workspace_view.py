@@ -5,9 +5,10 @@ from labbox_ephys.workspace.workspace import Workspace
 from ipywidgets import DOMWidget
 from traitlets import Float as FloatTrait
 from traitlets import Unicode
+from ._version import __version__
 
 module_name = 'labbox-ephys-widgets-jp'
-module_version = '0.1.4'
+module_version = __version__
 
 labbox_config = {
         'job_handlers': {
