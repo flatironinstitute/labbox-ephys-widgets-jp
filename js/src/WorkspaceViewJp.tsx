@@ -1,7 +1,8 @@
 import { DOMWidgetModel, DOMWidgetView, ISerializers } from '@jupyter-widgets/base';
 import { createExtensionContext, LabboxProvider } from 'labbox';
-import React, { Suspense } from 'react';
+import React, { Suspense, useCallback } from 'react';
 import ReactDOM from 'react-dom';
+import { WorkspaceRoute } from './extensions/pluginInterface';
 import registerExtensions from './registerExtensions';
 import version from './version'
 
@@ -12,7 +13,8 @@ export class WorkspaceViewJp extends DOMWidgetView {
         // this._hitherJobManager = new HitherJobManager(this.model)
     }
     async element() {
-        const workspaceUri: string = this.model.get('workspaceUri')
+        const workspaceRoute = JSON.parse(this.model.get('workspaceRoute'))
+        const workspaceUri: string = workspaceRoute.workspaceUri
 
         const WorkspaceViewWrapper = React.lazy(() => import('./WorkspaceViewWrapper'))
 
@@ -27,11 +29,18 @@ export class WorkspaceViewJp extends DOMWidgetView {
             jupyterModel: this.model
         }
 
+        // cannot use a hook here because we are not in a react component
+        const handleWorkspaceRouteChanged = (workspaceRoute: WorkspaceRoute) => {
+            this.model.set('workspaceRoute', JSON.stringify(workspaceRoute))
+            this.model.save_changes()
+        }
+
         return (
             <Suspense fallback={<div>Importing workspace view</div>}>
                 <LabboxProvider extensionContext={extensionContext} apiConfig={apiConfig} status={this._status}>
                     <WorkspaceViewWrapper
                         workspaceUri={workspaceUri}
+                        onWorkspaceRouteChanged={handleWorkspaceRouteChanged}
                     />
                 </LabboxProvider>
             </Suspense>
@@ -72,7 +81,7 @@ export class WorkspaceViewJpModel extends DOMWidgetModel {
             _view_name: WorkspaceViewJpModel.view_name,
             _view_module: WorkspaceViewJpModel.view_module,
             _view_module_version: WorkspaceViewJpModel.view_module_version,
-            workspaceUri: ''
+            workspaceRoute: JSON.stringify({workspaceUri: '', page: 'recordings'})
         };
     }
 

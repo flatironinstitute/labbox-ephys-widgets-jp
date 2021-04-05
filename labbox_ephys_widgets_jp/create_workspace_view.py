@@ -1,3 +1,4 @@
+import json
 # this is how the hither functions get registered
 import labbox_ephys as le
 import labbox as lb
@@ -38,6 +39,10 @@ def create_workspace_view(
     workspace_uri: str,
     height: float=0
 ):
+    initial_workspace_route = {
+        'page': 'recordings',
+        'workspaceUri': workspace_uri
+    }
     class WorkspaceViewJp(DOMWidget):
         _model_name = Unicode('WorkspaceViewJpModel').tag(sync=True)
         _model_module = Unicode(module_name).tag(sync=True)
@@ -45,7 +50,7 @@ def create_workspace_view(
         _view_name = Unicode('WorkspaceViewJp').tag(sync=True)
         _view_module = Unicode(module_name).tag(sync=True)
         _view_module_version = Unicode(module_version).tag(sync=True)
-        workspaceUri = Unicode(workspace_uri).tag(sync=True)
+        workspaceRoute = Unicode(json.dumps(initial_workspace_route)).tag(sync=True)
         widgetHeight = FloatTrait(height).tag(sync=True)
         def __init__(self) -> None:
             super().__init__()
@@ -60,5 +65,21 @@ def create_workspace_view(
             else:
                 self._worker_session.handle_message(msg)
                 self._worker_session.iterate()
+        @property
+        def workspace_uri(self):
+            wr = json.loads(self.workspaceRoute)
+            return wr.get('workspaceUri', workspace_uri)
+        @property
+        def current_page(self):
+            wr = json.loads(self.workspaceRoute)
+            return wr['page']
+        @property
+        def current_recording_id(self):
+            wr = json.loads(self.workspaceRoute)
+            return wr.get('recordingId', None)
+        @property
+        def current_sorting_id(self):
+            wr = json.loads(self.workspaceRoute)
+            return wr.get('sortingId', None)
     X = WorkspaceViewJp()
     return X

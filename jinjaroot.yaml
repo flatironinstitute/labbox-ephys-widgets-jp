@@ -1,7 +1,7 @@
 projectName: labbox-ephys-widgets-jp
 projectNameUnderscore: labbox_ephys_widgets_jp
-projectVersion: 0.1.5
-projectVersionInfo: (0, 1, 5)
+projectVersion: 0.1.6
+projectVersionInfo: (0, 1, 6)
 projectDescription:
 projectUrl: https://github.com/flatironinstitute/labbox-ephys-widgets-jp
 projectAuthor: Jeremy Magland and Jeff Soules

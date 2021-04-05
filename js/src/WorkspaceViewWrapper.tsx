@@ -10,6 +10,7 @@ import WorkspaceView from './extensions/workspaceview/WorkspaceView';
 
 interface Props {
     workspaceUri: string
+    onWorkspaceRouteChanged?: (workspaceRoute: WorkspaceRoute) => void
 }
 
 export const useWorkspaceRoute = (location: LocationInterface, history: HistoryInterface, workspaceUri: string | undefined): [WorkspaceRoute, WorkspaceRouteDispatch] => {
@@ -28,7 +29,7 @@ export const useWorkspaceRoute = (location: LocationInterface, history: HistoryI
     return [workspaceRoute, workspaceRouteDispatch]
 }
 
-const WorkspaceViewWrapper: FunctionComponent<Props> = ({ workspaceUri }) => {
+const WorkspaceViewWrapper: FunctionComponent<Props> = ({ workspaceUri, onWorkspaceRouteChanged }) => {
     // const { serverInfo } = useContext(LabboxProviderContext)
     const plugins = usePlugins<LabboxPlugin>()
 
@@ -112,6 +113,10 @@ const WorkspaceViewWrapper: FunctionComponent<Props> = ({ workspaceUri }) => {
     }, [location, locationHistory])
 
     const [workspaceRoute, workspaceRouteDispatch] = useWorkspaceRoute(location, history, workspaceUri)
+
+    useEffect(() => {
+        onWorkspaceRouteChanged && onWorkspaceRouteChanged(workspaceRoute)
+    }, [workspaceRoute, onWorkspaceRouteChanged])
 
     return (
         <MuiThemeProvider theme={theme}>
