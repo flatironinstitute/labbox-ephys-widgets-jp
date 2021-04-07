@@ -1,6 +1,6 @@
 {
   "name": "labbox-ephys-widgets-jp",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Labbox-ephys jupyter widgets",
   "author": "Jeremy Magland",
   "main": "./lib/index.js",

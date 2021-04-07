@@ -6,7 +6,6 @@ import version from './version'
 
 // const extensionContext = createExtensionContext<LabboxPlugin>()
 // registerExtensions(extensionContext)
-// console.log('---', extensionContext.plugins)
 
 // Custom Model. Custom widgets models must at least provide default values
 // for model attributes, including

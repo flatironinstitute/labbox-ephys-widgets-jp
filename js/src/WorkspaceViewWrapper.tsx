@@ -16,7 +16,7 @@ interface Props {
 export const useWorkspaceRoute = (location: LocationInterface, history: HistoryInterface, workspaceUri: string | undefined): [WorkspaceRoute, WorkspaceRouteDispatch] => {
     const workspaceRouteDispatch = useMemo(() => ((a: WorkspaceRouteAction) => {
         const route = routeFromLocation(history.location, {})
-        let newRoute: WorkspaceRoute = workspaceRouteReducer(route, a)
+        let newRoute: WorkspaceRoute = workspaceRouteReducer({...route, workspaceUri}, a)
         const newLocation = locationFromRoute(newRoute)
         if ((newLocation.pathname !== location.pathname) || (newLocation.search !== location.search)) {
             history.push(newLocation)
