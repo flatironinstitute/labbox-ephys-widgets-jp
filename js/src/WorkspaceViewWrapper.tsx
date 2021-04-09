@@ -1,12 +1,14 @@
 import { MuiThemeProvider } from '@material-ui/core';
 import { usePlugins, useSubfeed } from 'labbox';
 import React, { FunctionComponent, useCallback, useEffect, useMemo, useReducer, useRef, useState } from 'react';
+import MainWindow from './extensions/mainwindow/MainWindow/MainWindow';
 import { filterPlugins, LabboxPlugin } from './extensions/pluginInterface';
 import { parseWorkspaceUri } from './extensions/pluginInterface/misc';
 import workspaceReducer, { WorkspaceAction } from './extensions/pluginInterface/workspaceReducer';
 import { HistoryInterface, locationFromRoute, LocationInterface, routeFromLocation, WorkspaceRoute, WorkspaceRouteAction, WorkspaceRouteDispatch, workspaceRouteReducer } from './extensions/pluginInterface/WorkspaceRoute';
 import theme from './extensions/theme';
 import WorkspaceView from './extensions/workspaceview/WorkspaceView';
+import version from './version';
 
 interface Props {
     workspaceUri: string
@@ -121,7 +123,16 @@ const WorkspaceViewWrapper: FunctionComponent<Props> = ({ workspaceUri, onWorksp
     return (
         <MuiThemeProvider theme={theme}>
             <div ref={divRef} className="WorkspaceViewWrapper" style={{ position: 'absolute', left: 0, right: 0, top: 0, bottom: 0 }}>
-                <WorkspaceView
+                <MainWindow
+                    workspace={workspace}
+                    workspaceDispatch={workspaceDispatch}
+                    workspaceRoute={workspaceRoute}
+                    workspaceRouteDispatch={workspaceRouteDispatch}
+                    version={version}
+                    width={width || 700}
+                    height={height || 700}
+                />
+                {/* <WorkspaceView
                     {...{
                         defaultFeedId: '',
                         workspace,
@@ -132,7 +143,7 @@ const WorkspaceViewWrapper: FunctionComponent<Props> = ({ workspaceUri, onWorksp
                         width: width || 700,
                         height: height || 700
                     }}
-                />
+                /> */}
             </div>
         </MuiThemeProvider>
     )
