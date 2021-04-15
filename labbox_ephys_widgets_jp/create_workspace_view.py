@@ -1,6 +1,7 @@
+import os
 import json
 # this is how the hither functions get registered
-import labbox_ephys as le
+import labbox_ephys as le 
 import labbox as lb
 from labbox_ephys.workspace.workspace import Workspace
 from ipywidgets import DOMWidget
@@ -81,5 +82,18 @@ def create_workspace_view(
         def current_sorting_id(self):
             wr = json.loads(self.workspaceRoute)
             return wr.get('sortingId', None)
+        @property
+        def log_events(self):
+            return self._worker_session.log_events
+        def dump_log_events(self, path: str):
+            if os.getenv('LABBOX_DEBUG') != '1':
+                raise Exception('You must set environment variable: LABBOX_DEBUG=1')
+            lines = [f'{_fmt_time(e.timestamp)}: {e.label}' for e in self.log_events]
+            with open(path, 'w') as f:
+                f.write('\n'.join(lines))
     X = WorkspaceViewJp()
     return X
+
+def _fmt_time(t):
+    import datetime
+    return datetime.datetime.fromtimestamp(t).isoformat()
