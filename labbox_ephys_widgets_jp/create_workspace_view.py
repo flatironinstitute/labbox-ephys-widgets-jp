@@ -33,7 +33,7 @@ labbox_config = {
     }
 
 def WorkspaceView(*, workspace: Workspace, height: float=0):
-    return create_workspace_view(workspace_uri=workspace.get_uri(), height=height)
+    return create_workspace_view(workspace_uri=workspace.uri, height=height)
 
 def create_workspace_view(
     *,

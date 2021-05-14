@@ -5,7 +5,7 @@ import shutil
 
 def main():
     thisdir = os.path.dirname(os.path.realpath(__file__))
-    sync_extensions_code(src_folder=f'{thisdir}/../../../labbox-ephys/src/python/labbox_ephys/extensions', dst_folder=f'{thisdir}/../../js/src/extensions')
+    # sync_extensions_code(src_folder=f'{thisdir}/../../../labbox-ephys/src/python/labbox_ephys/extensions', dst_folder=f'{thisdir}/../../js/src/extensions')
 
 def sync_extensions_code(src_folder, dst_folder):
     E1 = src_folder

@@ -42,8 +42,8 @@ const WorkspaceViewWrapper: FunctionComponent<Props> = ({ workspaceUri, onWorksp
             }
         })
     }, [])
-    const { feedUri, workspaceName } = parseWorkspaceUri(workspaceUri)
-    const subfeedName = useMemo(() => ({ workspaceName: workspaceName || '' }), [workspaceName])
+    const { feedUri } = parseWorkspaceUri(workspaceUri)
+    const subfeedName = 'main'
     const { appendMessages: appendWorkspaceMessages, loadedInitialMessages: initialLoadComplete } = useSubfeed({ feedUri, subfeedName, onMessages: handleWorkspaceSubfeedMessages })
     const [workspace, workspaceDispatch2] = useReducer(workspaceReducer, { recordings: [], sortings: [] })
     // const workspaceSubfeed = useAppendOnlyLog({feedUri: '', subfeedName})
